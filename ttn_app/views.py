@@ -17,8 +17,10 @@ def webhook_receiver(request):
         port = uplink_message.get('f_port')
         wisdom = uplink_message.get('decoded_payload', {}).get('wisdom')
 
-             # Extract common fields
+        # Prepare base data
         data = {'device_id': device_id, 'measurements': measurements, 'port': port, 'wisdom': wisdom}
+
+        # Extract sensor values
         for measurement in measurements:
             name = measurement.get('name')
             value = measurement.get('value')
@@ -29,22 +31,26 @@ def webhook_receiver(request):
             elif name == 'Pressure':
                 data['pressure'] = value
 
-             # Save to PostgreSQL
+        # Save to PostgreSQL
         SensorData.objects.create(**data)
         return HttpResponse('Success', status=200)
+
     except Exception as e:
         print(f"Error: {e}")
         return HttpResponse(f'Error: {e}', status=400)
 
 class SensorDataList(generics.ListAPIView):
-    queryset = SensorData.objects.all()
     serializer_class = SensorDataSerializer
 
     def get_queryset(self):
         device_id = self.request.query_params.get('device_id')
         start_time = self.request.query_params.get('start_time')
+
+        queryset = SensorData.objects.all()  # ✅ Don't use self.queryset directly
+
         if device_id:
-            self.queryset = self.queryset.filter(device_id=device_id)
+            queryset = queryset.filter(device_id=device_id)
         if start_time:
-            self.queryset = self.queryset.filter(received_at__gte=start_time)
-        return self.queryset
+            queryset = queryset.filter(received_at__gte=start_time)
+
+        return queryset
