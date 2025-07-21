@@ -75,11 +75,12 @@ WSGI_APPLICATION = 'ttn_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-'default': dj_database_url.config(
-    conn_max_age=600,
-    default='postgresql://airquality_4v7d_user:JMEMCPlTwJGjtOKtym1U4iRZEwuXGHsh@dpg-d1utoq49c44c73db2vg0-a.oregon-postgres.render.com/airquality_4v7d'
-)
-
+DATABASES = {
+    'default': dj_database_url.config(
+        conn_max_age=600,
+        default='postgresql://airquality_4v7d_user:JMEMCPlTwJGjtOKtym1U4iRZEwuXGHsh@dpg-d1utoq49c44c73db2vg0-a.oregon-postgres.render.com/airquality_4v7d'
+    )
+}
 
 
 # Password validation
