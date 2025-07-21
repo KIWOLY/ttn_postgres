@@ -1,1 +1,1 @@
-web: gunicorn ttn_project.wsgi
+web: gunicorn ttn_project.wsgi:application
