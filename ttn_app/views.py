@@ -46,7 +46,7 @@ class SensorDataList(generics.ListAPIView):
         device_id = self.request.query_params.get('device_id')
         start_time = self.request.query_params.get('start_time')
 
-        queryset = SensorData.objects.all()  # ✅ Don't use self.queryset directly
+        queryset = SensorData.objects.all().order_by('-received_at')  # Order by received_at in descending order
 
         if device_id:
             queryset = queryset.filter(device_id=device_id)
