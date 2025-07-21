@@ -1,0 +1,1 @@
+web: gunicorn ttn_project.wsgi
