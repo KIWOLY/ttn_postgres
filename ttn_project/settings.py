@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-g8-%17$*b&7t#od^8u#9p9wlprup2+%+fme76r1k#ntfn-pty^
 DEBUG = True
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '<your-render-app>.onrender.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'ttn-postgres-1.onrender.com']
 
 # Application definition
 
@@ -75,12 +75,11 @@ WSGI_APPLICATION = 'ttn_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-         'default': dj_database_url.config(
-             conn_max_age=600,
-             default='postgresql://user:password@localhost:5432/ttn_data_db'
-         )
-     }
+'default': dj_database_url.config(
+    conn_max_age=600,
+    default='postgresql://airquality_4v7d_user:JMEMCPlTwJGjtOKtym1U4iRZEwuXGHsh@dpg-d1utoq49c44c73db2vg0-a.oregon-postgres.render.com/airquality_4v7d'
+)
+
 
 
 # Password validation
