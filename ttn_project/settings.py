@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'ttn_project.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         conn_max_age=600,
-        default='postgresql://airquality_4v7d_user:JMEMCPlTwJGjtOKtym1U4iRZEwuXGHsh@dpg-d1utoq49c44c73db2vg0-a.oregon-postgres.render.com/airquality_4v7d'
+        default='postgresql://airquality_0uy9_user:oC0aT6G05gZNwmmEJAsDZqpVMU6VR3Fa@dpg-d4dd903ipnbc73a00b5g-a/airquality_0uy9'
     )
 }
 
